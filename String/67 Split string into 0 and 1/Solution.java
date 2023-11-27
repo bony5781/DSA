@@ -9,23 +9,20 @@ class Solution {
             int zeroCount = 0;
             int oneCount = 0;
 
-            System.out.println(i);
-            if (str.charAt(i) == 0) {
+            if (i < n && str.charAt(i) == '0') {
                 while (i < n && str.charAt(i) == '0') {
                     zeroCount++;
                     i += 1;
                 }
-
                 while (i < n && str.charAt(i) == '1') {
                     oneCount++;
                     i += 1;
                 }
-            }else{
-                 while (i < n && str.charAt(i) == '1') {
+            }else {
+                while (i < n && str.charAt(i) == '1') {
                     oneCount++;
                     i += 1;
                 }
-
                 while (i < n && str.charAt(i) == '0') {
                     zeroCount++;
                     i += 1;
@@ -43,6 +40,6 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(maxSubStr("0101"));
+        System.out.println(maxSubStr("0101111111110"));
     }
 }
