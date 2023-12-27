@@ -5,29 +5,51 @@ import java.util.Arrays;
 
 public class Main {
 
-    public void swap(int[] arr, int i, int j){
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+//    public void swap(int[] arr, int i, int j){
+//        int temp = arr[i];
+//        arr[i] = arr[j];
+//        arr[j] = temp;
+//    }
+
+    public void merge(int[] arr, int low, int mid, int high) {
+        int[] arr2 = new int[high - low + 1];
+        int i = 0, j = mid + 1;
+        int k = 0;
+        while (i <= mid && j <= high) {
+            if (arr[i] > arr[j]) {
+                arr2[k++] = arr[j++];
+            } else {
+                arr2[k++] = arr[i++];
+            }
+        }
+
+        while (i <= mid) {
+            arr2[k++] = arr[i++];
+        }
+
+        while (j <= high) {
+            arr2[k++] = arr[j++];
+        }
+
+        for (int m = low, l = 0; m <= arr2.length; l++, m++) {
+            arr[l] = arr2[m];
+        }
+
+    }
+
+    //Merge Sort 27-12-23
+    public void mergeSort(int[] arr, int low, int high) {
+
+        if (low >= high) return;
+
+        int mid = low + (high - low) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+
     }
 
     //DSA Babbar sheet 09 26-12-23
-    public void sort012(int[] arr, int n) {
-        int low = 0;
-        int high = n - 1;
-        int i = 0;
-        while (i <= high) {
-            if(arr[i] == 0){
-                swap(arr, low, i);
-                low ++;  i++;
-            }else if(arr[i] == 1){
-                i ++;
-            }else if(arr[i] == 2) {
-                swap(arr, high, i);
-                high--;
-            }
-        }
-    }
     //Bubble Sort 25-12-23
 //    public void BubbleSort(int[] arr, int n){
 //
@@ -48,10 +70,10 @@ public class Main {
 
     public static void main(String[] args) {
         int[] arr = {0, 1, 0};
-        int n = arr.length;
+        int n = arr.length - 1;
         System.out.println("Array before sorting : " + Arrays.toString(arr));
         Main rv = new Main();
-        rv.sort012(arr, n);
+        rv.mergeSort(arr, 0, n);
         System.out.println("Array after sorting : " + Arrays.toString(arr));
     }
 }
