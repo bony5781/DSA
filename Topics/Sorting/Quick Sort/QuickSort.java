@@ -18,7 +18,7 @@ class QuickSort {
         }
         i++;
         int temp = arr[i];
-        arr[i] = pivot;
+        arr[i] = arr[high];
         arr[high] = temp;
         return i;
     }
