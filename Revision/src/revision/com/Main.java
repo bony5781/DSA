@@ -5,47 +5,58 @@ import java.util.HashMap;
 
 public class Main {
 
-    public void merge(int[] arr, int low, int mid, int high) {
-        int[] merged = new int[high - low + 1];
-        int i = low, j = mid + 1, k = 0;
-        while (i <= mid && j <= high) {
-            if (arr[i] <= arr[j]) {
-                merged[k++] = arr[i++];
-            } else {
-                merged[k++] = arr[j++];
-            }
+    // Revision 10/01/24
+    public int getPairsCount(int[] arr, int n, int k) {
+        HashMap<Integer, Integer> hmap = new HashMap<>();
+        int count = 0;
+        for(int i  = 0; i < n; i++){
+           count += hmap.getOrDefault(k-arr[i],0);
+           hmap.put(arr[i],hmap.getOrDefault(arr[i], 0)+1);
         }
-
-        while (i <= mid) {
-            merged[k++] = arr[i++];
-        }
-
-        while (j <= high) {
-            merged[k++] = arr[j++];
-        }
-
-        for (int m = low, p = 0; m < merged.length; m++, p++) {
-            arr[p] = merged[m];
-        }
+        return count;
     }
+
+    // Revision 08/01/24
+    // public void merge(int[] arr, int low, int mid, int high) {
+    //     int[] merged = new int[high - low + 1];
+    //     int i = low, j = mid + 1, k = 0;
+    //     while (i <= mid && j <= high) {
+    //         if (arr[i] <= arr[j]) {
+    //             merged[k++] = arr[i++];
+    //         } else {
+    //             merged[k++] = arr[j++];
+    //         }
+    //     }
+
+    //     while (i <= mid) {
+    //         merged[k++] = arr[i++];
+    //     }
+
+    //     while (j <= high) {
+    //         merged[k++] = arr[j++];
+    //     }
+
+    //     for (int m = low, p = 0; m < merged.length; m++, p++) {
+    //         arr[p] = merged[m];
+    //     }
+    // }
 
     //Merge Sort 08/01/2024
-    public void mergeSort(int[] arr, int low, int high) {
-        if(low >= high){
-            return;
-        }
-        int mid = low + (high - low) / 2;
-        mergeSort(arr, low, mid);
-        mergeSort(arr, mid + 1, high);
-        merge(arr, low, mid, high);
-    }
+    // public void mergeSort(int[] arr, int low, int high) {
+    //     if(low >= high){
+    //         return;
+    //     }
+    //     int mid = low + (high - low) / 2;
+    //     mergeSort(arr, low, mid);
+    //     mergeSort(arr, mid + 1, high);
+    //     merge(arr, low, mid, high);
+    // }
 
     public static void main(String[] args) {
-        int[] arr1 = {-10, -2, -3, -4};
-        int n = arr1.length;
+        int[] arr = {1, 5, 5, 5, 5, 7};
+        int n = arr.length;
         Main main = new Main();
-        System.out.println("Array before sorting = " + Arrays.toString(arr1));
-        main.mergeSort(arr1, 0, n - 1);
-        System.out.println("Array after sorting = " + Arrays.toString(arr1));
+        int ans = main.getPairsCount(arr, n, 10);
+        System.out.println("Count variable = " + ans);
     }
 }
