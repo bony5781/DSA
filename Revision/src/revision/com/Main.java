@@ -6,40 +6,49 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) {
-        int[] arr = { 5, 1, 7, 12, 23, 7, -1 };
-        int n = arr.length;
+        String P = "aabca";
+        String Q = "bacaa";
+        // int[] arr = { 5, 1, 7, 12, 23, 7, -1 };
+        // int n = arr.length;
         Main main = new Main();
-        System.out.println("Array before sorting = " + Arrays.toString(arr));
-        main.quickSort(arr, 0, n - 1);
-        System.out.println("Array after sorting = " + Arrays.toString(arr));
+        // System.out.println("Array before sorting = " + Arrays.toString(arr));
+        // main.quickSort(arr, 0, n - 1);
+        // System.out.println("Array after sorting = " + Arrays.toString(arr));
+        System.out.println(main.isCyclicRotation(P, Q));
+    }
+
+    // Revision 18/01/24
+    public  int isCyclicRotation(String p, String q)  {
+        int ans = (p+p).indexOf(q) != -1 ? 1 : 0;
+        return ans;
     }
 
     // Revision 17/01/24
-    public int partition(int[] arr, int low, int high){
-        int pivot = arr[high];
-        int i = low - 1;
-        for(int j = low; j < high; j++){
-            if(arr[j] < pivot){
-                i++;
-                int temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
-            }
-        }
-        i++;
-        int temp = arr[high];
-        arr[high] = arr[i];
-        arr[i] = temp;
-        return i;
-    }
+    // public int partition(int[] arr, int low, int high){
+    //     int pivot = arr[high];
+    //     int i = low - 1;
+    //     for(int j = low; j < high; j++){
+    //         if(arr[j] < pivot){
+    //             i++;
+    //             int temp = arr[j];
+    //             arr[j] = arr[i];
+    //             arr[i] = temp;
+    //         }
+    //     }
+    //     i++;
+    //     int temp = arr[high];
+    //     arr[high] = arr[i];
+    //     arr[i] = temp;
+    //     return i;
+    // }
 
-    public void quickSort(int[] arr, int low, int high) {
-        if(low < high) {
-            int pvtidx = partition(arr, low, high);
-            quickSort(arr, low, pvtidx - 1);
-            quickSort(arr, pvtidx + 1, high);
-        }
-    }
+    // public void quickSort(int[] arr, int low, int high) {
+    //     if(low < high) {
+    //         int pvtidx = partition(arr, low, high);
+    //         quickSort(arr, low, pvtidx - 1);
+    //         quickSort(arr, pvtidx + 1, high);
+    //     }
+    // }
 
     // public void merge(int[] arr, int low, int mid, int high) {
     // int[] merged = new int[high - low + 1];
