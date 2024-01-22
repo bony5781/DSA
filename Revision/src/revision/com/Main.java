@@ -11,43 +11,103 @@ public class Main {
         // int[] arr = { 5, 1, 7, 12, 23, 7, -1 };
         // int n = arr.length;
         Main main = new Main();
+        main.addFirst("5");
+        main.addFirst("10");
+        main.addFirst("15");
+        main.printList();
+        System.out.println(main.getSize());
         // System.out.println("Array before sorting = " + Arrays.toString(arr));
         // main.quickSort(arr, 0, n - 1);
         // System.out.println("Array after sorting = " + Arrays.toString(arr));
-        System.out.println(main.isCyclicRotation(P, Q));
+    }
+
+    // Revision 22-01-24
+    Node head;
+    private int size;
+
+    class Node {
+        String data;
+        Node next;
+
+        Node(String data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public void addFirst(String data) {
+        Node newNode = new Node(data);
+        size++;
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void addLast(String data) {
+        Node newNode = new Node(data);
+        size++;
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node currNode = head;
+        while(currNode != null){
+            currNode = currNode.next;
+        }
+        currNode.next = newNode;
+    }
+
+    public int getSize(){
+        return size;
+    }
+
+    public void printList(){
+        Node currNode = head;
+        while(currNode != null){
+            if(currNode.next != null){
+                System.out.print(currNode.data + "->");
+            }else{
+                System.out.print(currNode.data);
+            }
+            currNode = currNode.next;
+        }
+        System.out.println();
     }
 
     // Revision 18/01/24
-    public  int isCyclicRotation(String p, String q)  {
-        int ans = (p+p).indexOf(q) != -1 ? 1 : 0;
-        return ans;
-    }
+    // public int isCyclicRotation(String p, String q) {
+    // int ans = (p+p).indexOf(q) != -1 ? 1 : 0;
+    // return ans;
+    // }
 
     // Revision 17/01/24
     // public int partition(int[] arr, int low, int high){
-    //     int pivot = arr[high];
-    //     int i = low - 1;
-    //     for(int j = low; j < high; j++){
-    //         if(arr[j] < pivot){
-    //             i++;
-    //             int temp = arr[j];
-    //             arr[j] = arr[i];
-    //             arr[i] = temp;
-    //         }
-    //     }
-    //     i++;
-    //     int temp = arr[high];
-    //     arr[high] = arr[i];
-    //     arr[i] = temp;
-    //     return i;
+    // int pivot = arr[high];
+    // int i = low - 1;
+    // for(int j = low; j < high; j++){
+    // if(arr[j] < pivot){
+    // i++;
+    // int temp = arr[j];
+    // arr[j] = arr[i];
+    // arr[i] = temp;
+    // }
+    // }
+    // i++;
+    // int temp = arr[high];
+    // arr[high] = arr[i];
+    // arr[i] = temp;
+    // return i;
     // }
 
     // public void quickSort(int[] arr, int low, int high) {
-    //     if(low < high) {
-    //         int pvtidx = partition(arr, low, high);
-    //         quickSort(arr, low, pvtidx - 1);
-    //         quickSort(arr, pvtidx + 1, high);
-    //     }
+    // if(low < high) {
+    // int pvtidx = partition(arr, low, high);
+    // quickSort(arr, low, pvtidx - 1);
+    // quickSort(arr, pvtidx + 1, high);
+    // }
     // }
 
     // public void merge(int[] arr, int low, int mid, int high) {

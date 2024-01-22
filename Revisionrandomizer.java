@@ -8,7 +8,8 @@ public class Revisionrandomizer {
     }
 
     public static void main(String[] args) {
-        int array[] = { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 56, 57, 58, 59, 60,
+        int array[] = { 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 56, 57, 58, 59,
+                60,
                 61, 62, 63,
                 64, 65, 44, 45, 46 };
         System.out.println(getRandom(array));
