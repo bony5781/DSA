@@ -1,27 +1,27 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
-    public ArrayList<ArrayList<Integer>> subsets(int[] nums) {
-        ArrayList<ArrayList<Integer>> aList = new ArrayList<>();
-        aList.add(new ArrayList<Integer>() {
-        });
-        for (int i = 0; i <= nums.length - 1; i++) {
-            ArrayList<Integer> a1 = new ArrayList<>();
-            a1.add(nums[i]);
-            aList.add(a1);
-            for (int j = i + 1; j < nums.length - 1; j++) {
-                ArrayList<Integer> a2 = new ArrayList<>();
-                a2.add(nums[i], nums[j]);
-                aList.add(a2);
-            }
-        }
-        return aList;
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> resultList = new ArrayList<>();
+
+        // Start backtracking from the beginning
+        backtrack(resultList, new ArrayList<>(), nums, 0);
+        return resultList;
     }
 
-    public static void main(String[] args) {
-        Solution s = new Solution();
-        int[] nums = new int[] { 1, 2 };
-        System.out.println(s.subsets(nums));
+    private void backtrack(List<List<Integer>> resultSets, List<Integer> tempSet,
+            int[] nums, int start) {
+        // Add the set to result set
+        resultSets.add(new ArrayList<>(tempSet));
+        for (int i = start; i < nums.length; i++) {
+
+            // Case of including the number
+            tempSet.add(nums[i]);
+
+            // Backtrack the new subset
+            backtrack(resultSets, tempSet, nums, i + 1);
+
+            // Case of not-including the number
+            tempSet.remove(tempSet.size() - 1);
+        }
     }
 }
