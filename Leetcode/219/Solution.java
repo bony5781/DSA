@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 class Solution {
     public boolean containsDuplicate(int[] nums) {
         HashMap<Integer, Integer> hmap = new HashMap<>();
