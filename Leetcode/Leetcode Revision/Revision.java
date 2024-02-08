@@ -8,7 +8,7 @@ public class Revision {
     }
 
     public static void main(String[] args) {
-        int array[] = { 2, 3, 118 };
+        int array[] = { 2, 3, 118, 15 };
         System.out.println(getRandom(array));
     }
 }
