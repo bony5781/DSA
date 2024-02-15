@@ -1,3 +1,25 @@
+15/02/24
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashSet<Character> hset = new HashSet<>();
+        int maxLength = 0;
+        int left = 0;
+        for(int right = 0; right < s.length(); right++){
+            if(!hset.contains(s.charAt(right))){
+                hset.add(s.charAt(right));
+                maxLength = Math.max(maxLength, right - left + 1);
+            }else{
+                while(hset.contains(s.charAt(right))){
+                    hset.remove(s.charAt(left));
+                    left++;
+                }
+            }
+            hset.add(s.charAt(right));
+        }
+        return maxLength;
+    }
+}
+
 13/02/24
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
