@@ -1,3 +1,23 @@
+#2-04-2024
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        ans = ''
+        for i in range(len(s)):
+            if s[i].isalnum():
+                ans += s[i].lower()
+            else:
+                continue
+
+        left = 0
+        right = len(ans) - 1
+        while left <= right:
+            if ans[left] != ans[right]:
+                return False
+            left += 1
+            right -= 1
+        
+        return True
+
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
