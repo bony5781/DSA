@@ -1,3 +1,33 @@
+#8-04-2024
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        d1 = defaultdict(int)
+
+        for i in s:
+           d1[i] += 1
+
+        for i in t:
+            d1[i] -= 1
+        
+        for i in d1.values():
+            if i != 0:
+                return False
+
+        return True
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        s1 = set()
+        
+        for x in nums:
+            if x not in s1:
+                s1.add(x)
+            else:
+                return True
+
+        return False
+        
+        
 #5-04-2024
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
