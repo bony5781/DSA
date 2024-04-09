@@ -1,4 +1,17 @@
-#8-04-2024
+#09-04-2024
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d1 = dict()
+
+        for i in range(len(nums)):
+            if target - nums[i] not in d1:
+                d1[nums[i]] = i
+            else:
+                return [i, d1[target - nums[i]]]
+    
+        return []
+
+#08-04-2024
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         d1 = defaultdict(int)
@@ -28,7 +41,7 @@ class Solution:
         return False
         
         
-#5-04-2024
+#05-04-2024
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         rows  = collections.defaultdict(set)
@@ -49,7 +62,7 @@ class Solution:
 
         return True
 
-#3-04-2024
+#03-04-2024
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         ans = [1] * len(nums)
@@ -66,7 +79,7 @@ class Solution:
 
         return ans
     
-#2-04-2024
+#02-04-2024
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         ans = ''
