@@ -1,3 +1,24 @@
+#12-09-2024
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows = defaultdict(list)
+        cols = defaultdict(list)
+        matrix = defaultdict(list)
+
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == ".":
+                    continue
+
+                if board[i][j] in rows[i] or board[i][j] in cols[j] or board[i][j] in matrix[i // 3, j // 3]:
+                    return False
+
+                rows[i].append(board[i][j])
+                cols[j].append(board[i][j])
+                matrix[i // 3, j // 3].append(board[i][j])
+
+        return True
+
 #09-04-2024
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
