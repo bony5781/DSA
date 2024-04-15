@@ -1,4 +1,35 @@
-#12-09-2024
+#15-04-2024
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        noSpace = ""
+        for i in range(len(s)):
+            if s[i].isalnum():
+                noSpace += s[i].lower()
+
+        l, r = 0, len(noSpace) - 1
+        while l < r:
+            if noSpace[l] != noSpace[r]:
+                return False
+            l += 1
+            r -= 1
+
+        return True    
+    
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        l, r = 0, len(numbers) - 1
+        while l < r:
+            if numbers[l] + numbers[r] == target:
+                return [l + 1, r + 1]
+            elif  numbers[l] + numbers[r] < target:
+                    l += 1
+            else:
+                    r -= 1
+        
+        return []
+
+
+#12-04-2024
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         rows = defaultdict(list)
