@@ -1,3 +1,36 @@
+#22-04-2024
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        d1 = defaultdict(int)
+
+        for i in range(len(s)):
+            d1[s[i]] += 1
+        
+        for i in range(len(t)):
+            if t[i] not in d1:
+                return False
+            else:
+                d1[t[i]] -= 1
+        
+        for x in d1.values():
+            if x != 0:
+                return False
+        
+        return True
+
+#22-04-2024
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        s1 = set()
+
+        for x in nums:
+            if x not in s1:
+                s1.add(x)
+            else:
+                return True
+        
+        return False
+
 #20-04-2024
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
