@@ -1,3 +1,26 @@
+#23-04-2024
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d1 = dict()
+
+        for i in range(len(nums)):
+            if target - nums[i] in d1:
+                return [i, d1[target - nums[i]]]
+            d1[nums[i]] = i
+        
+        return []
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d1 = defaultdict(list)
+
+        for word in strs:
+            sorted_word = ''.join(sorted(word))
+            d1[sorted_word].append(word)
+        
+        return d1.values()
+        
+
 #22-04-2024
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
