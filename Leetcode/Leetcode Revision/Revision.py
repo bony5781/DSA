@@ -1,3 +1,38 @@
+#24-04-2024
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [1 for i in range(len(nums))]
+    
+        forward = 1
+        for i in range(len(nums)):
+            res[i] *= forward
+            forward *= nums[i]
+        
+        backward = 1
+        for i in range(len(nums) - 1, -1, -1):
+            res[i] *= backward
+            backward *= nums[i]
+        
+        return res
+    
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        d1 = defaultdict(int)
+        freq = [[] for i in range(len(nums) + 1)]
+
+        for x in nums:
+            d1[x] += 1
+
+        for x, c in d1.items():
+            freq[c].append(x)
+
+        res = []
+        for i in range(len(freq) - 1, 0, -1):
+            for x in freq[i]:
+                res.append(x)
+            if(len(res) == k):
+                return res
+            
 #23-04-2024
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
