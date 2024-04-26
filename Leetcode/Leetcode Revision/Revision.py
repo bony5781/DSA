@@ -1,3 +1,20 @@
+#26-04-2024
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        s1 = set(nums)
+        ans = 0
+
+        for x in nums:
+            if x - 1 not in s1:
+                temp = 0
+                while x in s1:
+                    temp += 1
+                    x += 1
+                ans = max(ans, temp)
+        
+        return ans
+                    
+
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         s1 = set(nums)
@@ -12,6 +29,7 @@ class Solution:
         
         return ans
 
+#25-04-2024
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         rows = defaultdict(list)
