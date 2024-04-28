@@ -1,3 +1,88 @@
+#26-04-2024
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        s1 = set(nums)
+        ans = 0
+
+        for x in nums:
+            if x - 1 not in s1:
+                temp = 0
+                while x in s1:
+                    temp += 1
+                    x += 1
+                ans = max(ans, temp)
+        
+        return ans
+                    
+
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        s1 = set(nums)
+        ans = 0
+
+        for x in nums:
+            if x - 1 not in s1:
+                temp = 0
+                while x + temp in s1:
+                    temp += 1
+                ans = max(ans, temp)
+        
+        return ans
+
+#25-04-2024
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows = defaultdict(list)
+        cols = defaultdict(list)
+        square = defaultdict(list)
+
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == ".":
+                    continue
+                if board[i][j] in rows[i] or board[i][j] in cols[j] or board[i][j] in square[i//3,j//3]:
+                    return False
+                rows[i].append(board[i][j])
+                cols[j].append(board[i][j])
+                square[i//3,j//3].append(board[i][j])
+        
+        return True
+    
+#24-04-2024
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        res = [1 for i in range(len(nums))]
+    
+        forward = 1
+        for i in range(len(nums)):
+            res[i] *= forward
+            forward *= nums[i]
+        
+        backward = 1
+        for i in range(len(nums) - 1, -1, -1):
+            res[i] *= backward
+            backward *= nums[i]
+        
+        return res
+    
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        d1 = defaultdict(int)
+        freq = [[] for i in range(len(nums) + 1)]
+
+        for x in nums:
+            d1[x] += 1
+
+        for x, c in d1.items():
+            freq[c].append(x)
+
+        res = []
+        for i in range(len(freq) - 1, 0, -1):
+            for x in freq[i]:
+                res.append(x)
+            if(len(res) == k):
+                return res
+            
 #23-04-2024
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
