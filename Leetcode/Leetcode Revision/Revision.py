@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #2-05-2024
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
@@ -17,6 +18,40 @@ class Solution:
             res = max(res, r - l + 1)
 
         return res
+=======
+# 30-04-2024
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        s1 = set()
+        l = 0
+        ans = 0
+
+        for r in range(len(s)):
+            while s[r] in s1:
+                s1.remove(s[l])
+                l += 1
+            s1.add(s[r])
+            ans = max(ans, r - l + 1)
+            r += 1
+        
+        return ans
+        
+# 29-04-2024
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        l , r = 0, 1
+        maxP  = 0
+
+        while r < len(prices):
+            temp = prices[r] - prices[l]
+            if temp > 0:
+                maxP = max(temp, maxP)
+            else:
+                l = r
+            r += 1
+        
+        return maxP
+>>>>>>> 93d06046bd92329bf17806989eabb95f1a1a85f7
 
 #26-04-2024
 class Solution:
