@@ -1,24 +1,37 @@
-<<<<<<< HEAD
-#2-05-2024
+#06-05-2024
 class Solution:
-    def characterReplacement(self, s: str, k: int) -> int:
-        count = defaultdict(int)
-        res = 0
-        maxF = 0
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
 
-        l = 0
-        for r in range(len(s)):
-            count[s[r]] += 1
-            maxF = max(maxF, count[s[r]])
-
-            if (r - l + 1) - maxF > k:
-                count[s[l]] -= 1
+        l, r = 0, len(numbers) - 1
+        
+        while l < r:
+            if numbers[l] + numbers[r] == target:
+                return [l + 1, r + 1]
+            elif numbers[l] + numbers[r] > target:
+                r -= 1
+            else:
                 l += 1
+        
+        return []
 
-            res = max(res, r - l + 1)
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = s.replace(" ","")
+        t = ""
+        
+        for x in s:
+            if x.isalnum():
+                t += x.lower()
+        
+        l, r = 0, len(t) - 1
+        while l < r:
+            if t[l] != t[r]:
+                return False
+            l += 1
+            r -= 1
 
-        return res
-=======
+        return True
+
 # 30-04-2024
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
@@ -51,7 +64,6 @@ class Solution:
             r += 1
         
         return maxP
->>>>>>> 93d06046bd92329bf17806989eabb95f1a1a85f7
 
 #26-04-2024
 class Solution:
