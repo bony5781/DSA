@@ -1,3 +1,48 @@
+#07-05-2024
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        l, r = 0, len(height) - 1
+        maxA = 0
+
+        while l < r:
+            tempA = min(height[l], height[r]) * (r - l)
+            maxA = max(maxA, tempA)
+
+            if height[l] > height[r]:
+                r -= 1
+            else:
+                l += 1
+        
+        return maxA
+    
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        ans = []
+
+        for i in range(len(nums) - 2):
+            if nums[i] > 0:
+                break
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            
+            l, r = i + 1, len(nums) - 1
+            while l < r:
+                target = nums[i] + nums[l] + nums[r] 
+                if target > 0:
+                    r -= 1
+                elif target < 0:
+                    l += 1
+                else:
+                    temp = [nums[i], nums[l], nums[r]]
+                    ans.append(temp)
+                    while l < r and nums[l] == temp[1]:
+                        l += 1
+                    while l < r and nums[r] == temp[2]:
+                        r -= 1
+        
+        return ans
+
 #06-05-2024
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
