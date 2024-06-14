@@ -1,104 +1,66 @@
 class Node:
-    def __init__(self,val):
-        self.val = val
-        self.next = None
+    def __init__(self, data=None):
+        self.data=data
+        self.next=None
 
-class LL:
+class LinkedList:
     def __init__(self):
-        self.head = None
-        print("Created a Linked list object")
-        
-    def insertHead(self,val):
-        temp = Node(val)
-        if self.head == None:
-            self.head = temp
-        else:
-            temp.next = self.head
-            self.head = temp
+        self.head = Node()
     
-    def insertTail(self,val):
-        temp = Node(val)
-        if self.head is None:
-            self.insertHead(val)
-            return
+    def appendEnd(self, data):
+        new_node = Node(data)
         curr = self.head
         while curr.next:
             curr = curr.next
-        curr.next = temp
-        
-    def insertSpecificIndex(self, idx, val):
-        i = 0
-        curr = self.head
-        while i != idx - 1 and curr:
-            i += 1 
-            curr = curr.next
-        temp = Node(val)
-        if curr.next != None:
-            temp.next = curr.next
-            curr.next = temp
-        else:
-            curr.next = temp
+        curr.next = new_node
     
-    def popHead(self):
-        if(self.head is None):
-            print("Linked list is empty")
-            return
-        self.head = self.head.next
-    
-    def popTail(self):
-        if(self.head is None):
-            print("Linked list is empty")
-            return
-        
+    def getLength(self):
         curr = self.head
-        while curr.next.next:
+        l = 0
+        while curr.next:
             curr = curr.next
-        curr.next = None
-    
-    def delSpecificIndex(self, idx):
-        i = 0
-        curr = self.head
-        while i != idx - 1 and curr:
-            i += 1
-            curr = curr.next
-        if i != idx - 1:
-            print("Invalid position")
-            return 
-        curr.next = curr.next.next
-        
-    def findLen(self):
-        i = 0
-        curr = self.head
-        while curr:
-            curr = curr.next
-            i += 1
-        return i
-    
-    def reverseLL(self):
-        prev,curr = None, self.head
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        self.head = prev
-    
-    def printList(self):
-        curr = self.head
-        while curr:
-            print(f"{curr.val} ",end='')
-            curr = curr.next
-        print()
-        return
+            l += 1
+        return l
 
-s1 = LL()
-s1.insertHead(10)
-s1.insertHead(5)
-s1.insertTail(15)
-s1.insertTail(20)
-s1.printList()
-print(s1.findLen())
-s1.insertSpecificIndex(3, 16)
-s1.printList()
-s1.delSpecificIndex(3)
-s1.printList()
+    def printList(self):
+        ele = []
+        curr = self.head
+        while curr.next:
+            curr = curr.next
+            ele.append(curr.data)
+        print(ele)
+    
+    def getElementAtIndex(self, index):
+        if index>=self.getLength() or index<0:
+            print("Error! Index out of range")
+            return None
+        curr_idx=0
+        curr=self.head
+        while True:
+            curr=curr.next
+            if curr_idx==index:
+                return curr.data 
+            curr_idx += 1
+    
+    def popElementAtIndex(self,index):
+        if index>=self.getLength() or index<0:
+            print("Error! Index out of range")
+            return
+        curr_idx=0
+        curr = self.head
+        while True:
+            last_node=curr
+            curr = curr.next
+            if curr_idx==index:
+                last_node.next = curr.next
+                return curr.data
+            curr_idx+=1
+
+obj = LinkedList()
+obj.append(0)
+obj.append(1)
+obj.append(2)
+obj.append(3)
+obj.printList()
+print(obj.popElementAtIndex(3))
+obj.printList()        
