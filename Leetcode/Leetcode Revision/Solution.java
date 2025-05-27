@@ -1,3 +1,22 @@
+//27-05-25
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxProfit = 0;
+        int tempProfit;
+        int left = 0, right = 1;
+
+        while(right < prices.length){
+            tempProfit = prices[right] - prices[left];
+            maxProfit = Math.max(maxProfit, tempProfit);
+            if(tempProfit < 0){
+                left = right;
+            }
+            right++;
+        }
+        return maxProfit;
+    }
+}
+
 //25-05-2025
 class Solution {
     public int maxSubArray(int[] nums) {
