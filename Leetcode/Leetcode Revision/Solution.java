@@ -1,3 +1,23 @@
+//28-05-25
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int positive = 0, negative = 1;
+        int[] ans = new int[nums.length];
+
+        for(int num: nums){
+            if(num >= 0){
+                ans[positive] = num;
+                positive += 2;
+            }else{
+                ans[negative] = num;
+                negative += 2;
+            }
+        }    
+
+        return ans;
+    }
+}
+
 //27-05-25
 class Solution {
     public int maxProfit(int[] prices) {
