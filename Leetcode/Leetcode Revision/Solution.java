@@ -1,3 +1,42 @@
+//29-05-25
+class Solution {
+
+    public void swap(int[] nums, int x, int y){
+        int temp = nums[x];
+        nums[x] = nums[y];
+        nums[y] = temp;
+    }
+
+    public void reverse(int[] nums, int left, int right){
+        while(left < right){
+            swap(nums, left, right);
+            left++; right--;
+        }
+    }
+    public void nextPermutation(int[] nums) {
+        int n = nums.length - 1;
+
+        int i = n - 1;
+        while(i >= 0 && (nums[i] >= nums[i + 1])){
+            i--;
+        }
+
+        System.out.println(i);
+        if(i == -1){
+            reverse(nums, 0, n);
+            return;
+        }
+
+        int j = n;
+        while(j > i && nums[j] <= nums[i]){
+            j--;
+        }
+
+        swap(nums, i, j);
+        reverse(nums, i + 1, n);
+    }
+}
+
 //28-05-25
 class Solution {
     public int[] rearrangeArray(int[] nums) {
