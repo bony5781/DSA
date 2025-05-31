@@ -1,3 +1,82 @@
+//31-05-25
+class Solution {
+    //Set row zero
+    public void setRowZero(int[][] matrix, int row, int rows, int cols){
+        for(int j = 0; j < cols; j++){
+            matrix[row][j] = 0;
+        }
+    }
+
+    //Set col zero
+    public void setColZero(int[][] matrix, int col, int rows, int cols){
+        for(int i = 0; i < rows; i++){
+            matrix[i][col] = 0;
+        }
+    }
+
+    public void setZeroes(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        boolean setBoth = false;
+        boolean setFirstColZero = false;
+        boolean setFirstRowZero = false;
+
+        if(matrix[0][0] == 0){
+            setBoth = true;
+        }
+
+        for(int i = 0; i < rows; i++){
+            if(matrix[i][0] == 0){
+                setFirstColZero = true;
+            }
+        }
+
+        for(int j = 0; j < cols; j++){
+            if(matrix[0][j] == 0){
+                setFirstRowZero = true;
+            }
+        }
+
+        //Check all except 1st row and 1st column
+        for(int i = 0; i < rows; i++){
+            for(int j = 0; j < cols; j++){
+                if(matrix[i][j] == 0){
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+
+        //Set all rows zero(except 0-0)
+        for(int i = 1; i < rows; i++){
+            if(matrix[i][0] == 0){
+                setRowZero(matrix, i, rows, cols);
+            }
+        }
+
+        //Set all cols zero(except 0-0)
+        for(int j = 1; j < cols; j++){
+            if(matrix[0][j] == 0){
+                setColZero(matrix, j, rows, cols);
+            }
+        }
+
+        //First element is 0
+        if(setBoth == true){
+            setRowZero(matrix, 0, rows, cols);
+            setColZero(matrix, 0, rows, cols);
+        }
+
+        if(setBoth == false && setFirstColZero == true){
+            setColZero(matrix, 0, rows, cols);
+        }
+
+        if(setBoth == false && setFirstRowZero == true){
+            setRowZero(matrix, 0, rows, cols);
+        }
+    }
+}
+
 //29-05-25
 class Solution {
 
