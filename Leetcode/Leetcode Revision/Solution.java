@@ -1,3 +1,28 @@
+//02-06-25
+class Solution {
+
+    public void swap(int[] nums, int x, int y){
+        int temp = nums[x];
+        nums[x] = nums[y];
+        nums[y] = temp;
+    }
+
+    public void sortColors(int[] nums) {
+        int left = 0, mid = 0, high = nums.length - 1;
+        while(mid <= high){
+            if(nums[mid] == 0){
+                swap(nums, left, mid);
+                left++; mid++;
+            }else if(nums[mid] == 1){
+                mid++;
+            }else{
+                swap(nums, mid, high);
+                high--;
+            }
+        }
+    }
+}
+
 //31-05-25
 class Solution {
     //Set row zero
