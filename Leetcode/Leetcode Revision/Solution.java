@@ -1,3 +1,21 @@
+//5-06-25
+class Solution {
+    public int maxProfit(int[] prices) {
+        int buyDay = 0;
+        int maxProfit = 0;
+
+        for(int sellDay = 1; sellDay < prices.length; sellDay++){
+            int currProfit = prices[sellDay] - prices[buyDay];
+            maxProfit = Math.max(currProfit, maxProfit);
+            if(currProfit < 0){
+                buyDay = sellDay;
+            }
+        }
+
+        return maxProfit;
+    }
+}
+
 //4-06-25
 class Solution {
     public int maxSubArray(int[] nums) {
