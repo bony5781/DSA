@@ -1,3 +1,38 @@
+//8-06-25
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        //If array is empty, maximum sequence is 0
+        if(nums.length == 0) return 0;
+
+        //To store all the elements of the array in hashset
+        HashSet<Integer> set = new HashSet<>();
+
+        for(int num: nums){
+            set.add(num);
+        }
+
+        //To store the answer
+        int currLength = 0, maxLength  = 1;
+
+        //Iterate over hashset as we dont want repeating elements
+        for(int num: set){
+            //Check if it  is the starting element or not
+            if(!set.contains(num - 1)){
+                //It is a new sequence
+                currLength = 1;
+                num += 1;
+                //Find the length of the sequence and update the maximum one
+                while(set.contains(num)){
+                    currLength += 1;
+                    num += 1;
+                }
+                maxLength = Math.max(maxLength, currLength);
+            }
+        }
+        return maxLength;
+    }
+}
+
 //7-06-25
 class Solution {
 
